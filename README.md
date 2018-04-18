@@ -24,8 +24,35 @@
   2. npm i babel-polyfill --save 在main.js 中引入
   3. 
 ```
+## base-project
+### 1. stylus基础搭建
+1. reset.styl 样式重置 Reset CSS v2.0
+1. variable.styl 变量管理
+###  主题颜色搭建
+1. 白天和黑夜主题切换
+2. 分别建立颜色变量和主题
+###  项目模块基本搭建
+1. 首页：今日值班医生  今日值班护士 备忘录 n-home
+2. 病区排班 n-order
+3. 责任医护 n-care
+4. 输液监测 n-trans
+5. 体温监测 n-temp
+6. 护士宣教 n-mission
+7. 电子白板 n-board
+8. 登录     n-login
+###  项目路由搭建
+home 路由 其他为子路由
+###  字体图标
+1. 字体图标引入 icomoon.css 
+```javascript
+  //  main.js 中引入
+   import './common/css/icomoon.css'
+
+```
+###  技术相关
 ## git 相关
-1. git branch nursing-board-null 空项目 初始化项目
+1.  git branch null-project 空项目 初始化项目
+2.  git branch base-project 项目基础搭建
 
 ## Build Setup
 

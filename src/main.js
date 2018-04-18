@@ -4,7 +4,8 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+// 引入字体图标
+import './common/css/icomoon.css'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
