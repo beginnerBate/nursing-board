@@ -44,16 +44,58 @@
 home 路由 其他为子路由
 ###  字体图标
 1. 字体图标引入 icomoon.css 
+2. font-awesome 
 ```javascript
   //  main.js 中引入
    import './common/css/icomoon.css'
+    // npm i font-awesome --save
+  //  main.js 中插入
+   import 'font-awesome/css/font-awesome.css'
 
 ```
-###  技术相关
+## static-project
+### 导航模块 √
+```javascript
+  //  右侧弹出 vue过度
+  //  在store里面新建store.js 修改menuShow 的值 通过 菜单的click事件提交状态
+  tabdisplay：false
+  setTab (state, code) {
+    state.tabdisplay = code
+  }
+  // transition 单元素组件过渡 name="slide-fade"   
+```
+### 登录模块和登出模块 √
+1. 页面打开的时候是登录页面
+2. 点击退出按钮之后也是登录页面
+3. login.vue 放在index 里面
+```javascript
+```
+### 首页模块
+#### 今日值班医生模块
+1. 详情模块
+```
+涉及vuex 问题 先把页面搭建
+```
+### 电子白板模块
+### 责任医生模块
+### 输液监测模块
+### 体温监测模块
+### 病区排班
+##  技术相关
+### 移动端头部设置
+```
+```
+### vuex
+1. npm i vuex --save
+### vue-router
 ## git 相关
 1.  git branch null-project 空项目 初始化项目
 2.  git branch base-project 项目基础搭建
-
+3.  git branch static-project 项目静态页面搭建
+## 细节补充
+1. 主题存入本地 默认是白天
+## 相关问题
+1. vuex模块化应用 ---
 ## Build Setup
 
 ``` bash

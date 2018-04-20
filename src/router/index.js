@@ -3,6 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 // 引入组件
 import NHome from 'components/n-home/n-home'
+import NIndex from 'components/n-index/n-index'
 import NOrder from 'components/n-order/n-order'
 import NCare from 'components/n-care/n-care'
 import NTemp from 'components/n-temp/n-temp'
@@ -15,7 +16,13 @@ export default new Router({
       path: '/',
       name: 'home',
       component: NHome,
+      redirect:'/index',
       children:[
+        {
+          path: 'index',
+          name: 'index',
+          component: NIndex
+        },
         {
           path: 'order',
           name: 'order',

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    just a null object project
     <router-view/>
   </div>
 </template>
@@ -10,3 +9,6 @@ export default {
   name: 'App'
 }
 </script>
+<style lang="stylus">
+@import '~common/stylus/app.styl'
+</style>

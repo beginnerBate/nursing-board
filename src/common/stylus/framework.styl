@@ -1,0 +1,99 @@
+@import './variable.styl'
+#app
+  width  100vw
+  height 100vh
+  // max-height 100vh
+ 
+.n-header
+  height 40px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  font-size: $fs-large-m
+  padding: 0 20px
+  border-bottom: 1px
+.n-header-left span 
+  padding: 0 12px
+  letter-spacing: 2px
+.n-header-right
+  display: flex
+.n-home-content
+  height calc(100vh - 41px)
+.base-box
+  padding: 8px 12px
+.base-box-header
+  height 40px
+  font-size: $fs-medium-x
+  line-height: 40px
+  letter-spacing: 2px
+  padding-left: 32px
+  border-top-left-radius:  5px
+  border-top-right-radius:  5px
+  cursor pointer
+.index-doctor-wrapper
+  width: 100%
+  padding: 12px
+.index-list
+  width: 100%
+  display: flex
+  li
+    padding: 8px
+    span 
+      padding: 0 3px
+.n-index
+  height 100%
+.n-index-top
+  height calc(100% - 40px)
+.n-index-top>div
+  height 35%
+.n-index-top>div:last-child
+  height 30%
+.n-footer
+  position relative
+  height 40px
+  .btn
+    position absolute
+    right 16px
+    padding: 0 16px
+    top: 3px
+    font-size: $fs-medium-x
+.n-menu
+  position: fixed
+  top:40px
+  bottom: 40px
+  right 0
+  max-width: 280px
+  min-width: 200px
+  overflow hidden
+  z-index: 1
+  ul
+    display: flex
+    flex-wrap: wrap
+    li
+      flex: 1 1 100%
+      padding: 20px 30px
+      padding-left: 60px
+      font-size: $fs-large-m
+      text-align: center
+      display: flex
+      justify-content: center
+      cursor pointer
+      span:last-child
+        flex: 1
+      span.fa
+        font-size $fs-large-x
+      &:nth-child(4)>span:last-child
+        padding-top: 3px
+  .icon_sy
+    width: 30px;
+    height: 34px;
+    display: inline-block;
+.btn
+  min-width: 45px
+  height: 32px
+  margin: 0 6px
+  display: flex
+  align-items: center
+  justify-content center
+  border-radius: 5px
+  cursor pointer

@@ -4,14 +4,18 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/store'
 // 引入字体图标
 import './common/css/icomoon.css'
+import 'font-awesome/css/font-awesome.css'
+import './common/stylus/reset.styl'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
