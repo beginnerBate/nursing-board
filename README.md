@@ -19,10 +19,14 @@
   5. common 项目静态文件 js css stylus image fonts
 ```
 3. 安装一些必用的包
-```
+```javascript
   1. npm i stylus stylus-loader --save-dev
   2. npm i babel-polyfill --save 在main.js 中引入
-  3. 
+  3. npm i better-scroll --save 
+    import Bscroll from 'better-scroll'
+    this.$nextTick(() => {
+      this.scroll = new Bscroll(this.$refs.rightTab, {})
+    })
 ```
 ## base-project
 ### 1. stylus基础搭建
@@ -95,7 +99,20 @@ home 路由 其他为子路由
 ## 细节补充
 1. 主题存入本地 默认是白天
 ## 相关问题
-1. vuex模块化应用 ---
+1. vuex模块化应用 
+```javascript
+modules:{
+  duty
+}
+duty:{
+  state:{
+    icon,
+    title,
+    onduty, //异步获取 在action里面获取
+    dutyList // 同上
+  }
+}
+```
 ## Build Setup
 
 ``` bash

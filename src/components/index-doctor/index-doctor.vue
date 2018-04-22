@@ -22,6 +22,7 @@
 </template>
 <script>
 import BaseBox from 'base/base-box/base-box'
+import {mapActions} from 'vuex'
 export default {
   components: {
     BaseBox
@@ -29,7 +30,11 @@ export default {
   methods: {
     open() {
       this.$store.commit('setDuty',true)
-    }
-  },
+      this.openDuty({icon:'fa-user-md',title:"今日值班医生"})
+    },
+    ...mapActions([
+      'openDuty'
+    ])
+  }
 }
 </script>

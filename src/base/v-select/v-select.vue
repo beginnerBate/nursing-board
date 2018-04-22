@@ -36,14 +36,11 @@ export default {
       listShow: false,
     }
   },
-  created() {
-    console.log(this.listdata,this.valueItem)
-  },
   methods: {
     onItemclick(value) {
-      this.sData = this.list[value].text
+      this.sData = this.listdata[value].text
       this.listShow = false
-      this.$emit('change',this.list[value].value)
+      this.$emit('change',this.listdata[value].value)
     }
   }
 }
@@ -51,6 +48,9 @@ export default {
 <style lang="stylus" scoped>
 .v-select
   position relative
+  .input
+    width 100px
+    border-radius 0
 .v-select-list
   width 100%
   max-height 160px

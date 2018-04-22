@@ -1,6 +1,6 @@
 <template>
   <div class="index-doctor">
-    <base-box title="今日值班护士" icon="fa-user-md">
+    <base-box title="今日值班护士" icon="fa-user-md" @open='open()'>
       <div class="index-doctor-wrapper">
         <ul class="index-list">
           <li>
@@ -22,9 +22,19 @@
 </template>
 <script>
 import BaseBox from 'base/base-box/base-box'
+import {mapActions} from 'vuex'
 export default {
   components: {
     BaseBox
+  },
+  methods: {
+    open() {
+      this.$store.commit('setDuty',true)
+      this.openDuty({icon:'fa-user-md',title:"今日值班护士"})
+    },
+    ...mapActions([
+      'openDuty'
+    ])
   }
 }
 </script>

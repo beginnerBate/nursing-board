@@ -1,8 +1,8 @@
 <template>
   <div class="index-doctor">
     <base-box title="备忘录" icon="fa-pencil">
-      <div class="index-doctor-wrapper">
-        <table>
+      <div class="index-memo-wrapper">
+        <table class="memo-table">
           <thead>
             <tr>
               <th>标题</th>
@@ -28,3 +28,11 @@ export default {
   }
 }
 </script>
+<style lang="stylus" scoped>
+.memo-table
+  width 100%
+  thead,tbody
+    line-height 36px
+
+</style>
+

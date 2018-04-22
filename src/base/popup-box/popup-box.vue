@@ -2,8 +2,8 @@
   <div class="pop" @click.self.stop="hide()">
     <div class="pop-wrapper">
       <div class="pop-content" ref="popwrapper">
-        <header>
-          <h1>{{title}}</h1>
+        <header>          
+          <h1><span class="fa" :class="icon"></span>{{title}}</h1>
           <ul>
             <li v-if="min && !restore" @click="changeMin()"><span class="fa fa-minus-square-o"></span></li>
             <li v-if="max && !restore" @click="changeMax()"><span class="fa fa-window-maximize"></span></li>
@@ -11,7 +11,7 @@
             <li v-if="restore" @click="changeRestore()"><span class="fa fa-window-restore"></span></li>
           </ul>
         </header>
-        <section>
+        <section ref="listWrapper">
           <slot></slot>
         </section>
       </div>
@@ -19,6 +19,7 @@
   </div>
 </template>
 <script>
+import Bscroll from 'better-scroll'
 export default {
   props: {
     title: {
@@ -40,6 +41,10 @@ export default {
     type: {
       type: String,
       default: 'onclose' //  [onclose,close]
+    },
+    icon: {
+      type:String,
+      default:''
     }
   },
   data () {
@@ -51,6 +56,9 @@ export default {
   mounted () {
     this.$nextTick(()=>{
       this._getWrapper()
+      this.scroll  = new Bscroll(this.$refs.listWrapper,{
+        click: true
+      })
     })
   },
   methods: {
@@ -151,6 +159,7 @@ export default {
     display flex
     align-items center
     cursor pointer
-.pop-content section
+.pop-content>section
     height 100%
+    overflow hidden
 </style>

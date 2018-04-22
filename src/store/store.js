@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import duty from './modules/duty'
 import loS from '@/common/js/loStorage'
 
 // 在使用vuex之前使用，先初始化相关数据
@@ -50,6 +51,9 @@ const mutations = {
     }
 }
 export default new Vuex.Store({
+    modules: {
+        duty
+    },
     state,
     mutations
 })
