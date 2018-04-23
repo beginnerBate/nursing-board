@@ -19,7 +19,9 @@
     <n-footer></n-footer>
   </div>
   <!-- 今日值班医生 -->
-  <duty-today v-if="$store.state.dutyopen" title="今日值班医生"></duty-today>
+  <duty-today v-if="$store.state.dutyopen"></duty-today>
+  <!-- 备忘录列表 -->
+  <memo-box v-if="$store.state.memoopen"></memo-box>
 </div>
 </template>
 <script>
@@ -28,16 +30,18 @@ import IndexNurse from 'components/index-nurse/index-nurse'
 import IndexMemo from 'components/index-memo/index-memo'
 import NFooter from 'components/n-footer/n-footer'
 import DutyToday from 'components/duty-today/duty-today'
+import MemoBox from 'components/memo-box/memo-box'
 export default {
   components: {
     IndexDoctor,
     IndexNurse,
     IndexMemo,
     NFooter,
-    DutyToday
+    DutyToday,
+    MemoBox
   },
   created () {
-    this.$store.commit('setTab', false)
+    this.$store.dispatch('initPage', {tab:false,headmenu:'首页'})
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div class="n-header">
     <div class="n-header-left">
       <span><i class="fa icon-icon1_nav"></i> 智能护理</span>
-      <span> 病区排班</span>
+      <span> {{$store.state.headmenu}}</span>
       <span> {{$store.state.headText}}</span>
     </div>
     <div class="n-header-right">

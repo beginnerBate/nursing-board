@@ -27,7 +27,6 @@ const actions = {
     setTimeout(()=>{
       commit('ondutyOk', data)
     },3000)
-    console.log(state.onDuty)
   }
 }
 

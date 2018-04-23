@@ -77,8 +77,11 @@ home 路由 其他为子路由
 ### 首页模块
 #### 今日值班医生模块
 1. 详情模块
-```
-涉及vuex 问题 先把页面搭建
+``` javascript
+// 涉及vuex 问题 先把页面搭建 √
+  vuex 单独出一个duty的模块 和 memo模块
+  duty.js 
+  memo.js 
 ```
 ### 电子白板模块
 ### 责任医生模块
@@ -96,6 +99,7 @@ home 路由 其他为子路由
 1.  git branch null-project 空项目 初始化项目
 2.  git branch base-project 项目基础搭建
 3.  git branch static-project 项目静态页面搭建
+4.  git pull origin static-project 更新本地仓库 和远程仓库同步
 ## 细节补充
 1. 主题存入本地 默认是白天
 ## 相关问题

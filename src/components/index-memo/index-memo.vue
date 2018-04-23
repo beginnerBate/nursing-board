@@ -1,6 +1,6 @@
 <template>
   <div class="index-doctor">
-    <base-box title="备忘录" icon="fa-pencil">
+    <base-box title="备忘录" icon="fa-pencil" @open="open()">
       <div class="index-memo-wrapper">
         <table class="memo-table">
           <thead>
@@ -25,7 +25,12 @@ import BaseBox from 'base/base-box/base-box'
 export default {
   components: {
     BaseBox
-  }
+  },
+  methods: {
+    open() {
+      this.$store.commit('setMemo', true)
+    }
+  },
 }
 </script>
 <style lang="stylus" scoped>

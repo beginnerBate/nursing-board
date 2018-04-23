@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import duty from './modules/duty'
+import memo from './modules/memo'
 import loS from '@/common/js/loStorage'
 
 // 在使用vuex之前使用，先初始化相关数据
@@ -20,7 +21,8 @@ const state = {
     headText: loS.getItem('headText', true),
     token: loS.getItem('token',true),
     tabdisplay: false,
-    dutyopen:false
+    dutyopen:false,
+    memoopen:false
 }
 const mutations = {
     changeheadmenu (state, name) {
@@ -48,12 +50,24 @@ const mutations = {
     },
     setDuty (state, code) {
         state.dutyopen = code
+    },
+    setMemo (state, code) {
+        state.memoopen = code
+    }
+}
+// action
+const actions = {
+    initPage ({commit}, {tab, headmenu}) {
+        commit('setTab', tab)
+        commit('changeheadmenu', headmenu)
     }
 }
 export default new Vuex.Store({
     modules: {
-        duty
+        duty,
+        memo
     },
     state,
-    mutations
+    mutations,
+    actions
 })

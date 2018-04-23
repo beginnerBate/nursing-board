@@ -77,13 +77,11 @@ export default {
       this.restore = false
     },
     changeOff(){
-      // emit('off')
-      console.log('off')
+      this.$emit('hide')
     },
     hide () {
       if(this.type === 'close') {
         this.$emit('hide')
-        console.log('ddd')
       }
     },
     _getWrapper () {
@@ -100,7 +98,7 @@ export default {
   right 0
   bottom 0
   left 0
-  background rgba(0,0,0,0.5)
+  background rgba(0,0,0,0.2)
   text-align center 
   white-space nowrap
   z-index 99
@@ -118,9 +116,8 @@ export default {
   white-space normal  
 .pop-content
   box-sizing border-box
-  width 80vw
+  max-width 80vw
   height 80vh
-  // transition all 2s
   background-color #ffffff
 .min
   position fixed
@@ -145,8 +142,8 @@ export default {
   font-size: 14px  
   overflow: hidden
 .pop-content header h1
-  font-weight 600
-  font-size 22px
+  // font-weight 600
+  font-size 20px
   letter-spacing 2px
 .pop-content header ul
   display flex

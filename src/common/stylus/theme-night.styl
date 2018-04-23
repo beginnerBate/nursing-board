@@ -82,4 +82,42 @@
     border 1px solid $color-c1
     &:hover
       background-color $color-c3
-      border 1px solid $color-c4 
+      border 1px solid $color-c4
+  .memo-box-table
+    background-color $color-b11
+    thead
+      background-color $color-c5
+      border-bottom 1px solid $color-c6
+      color $color-a8
+    tbody
+      color $color-c7
+      tr
+        border-bottom 1px solid $color-c6
+        th:first-child
+          border-left: 0
+        th
+          border-left 1px solid $color-c6
+  .memo-box-content>form
+    background: $color-c2
+    input,textarea
+      background: $color-c2 
+      color $color-c8
+      border 1px solid $color-c1
+  .n-order
+    border 1px solid $color-c5
+  .order-list
+    border 1px solid $color-c6
+  .order-list-date
+    border-bottom: 1px solid $color-c6
+    background-color: $color-c5
+    div:not(:first-child)
+      border-left: 1px solid $color-c6
+      color: $color-a8
+  .order-list-item
+    border-bottom: 1px solid $color-c6
+    div:not(:first-child)
+      border-left: 1px solid $color-c6
+    div:first-child
+      color $color-c7
+  &:first-child 
+    border-bottom: 0
