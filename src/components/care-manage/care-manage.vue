@@ -1,6 +1,6 @@
 <template>
   <div class="care-manage">
-    <popup-box title="执行详细情况" :off="off">
+    <popup-box title="执行详细情况" :off="off" @hide="$store.commit('setcareshow',false)">
       <div class="care-box-content">
         <!-- left -->
         <section>
@@ -12,7 +12,7 @@
               <h1>伟晴轩</h1>
             </div>
             <div class='bg-animate'>
-              <div><img src="./move_img1.png" alt=""></div>
+              <v-wave></v-wave>
             </div>
           </div>
           <ul class="care-list">
@@ -27,21 +27,38 @@
             <li><span>余额</span><span>-3446.63</span></li>
             <li><span>过敏</span><span>花粉过敏，汽油过敏</span></li>
           </ul>
-          <ul>
-            <li></li>
+          <ul class="care-list">
+            <li><span>联系方式</span><span>1254566122</span></li>
+            <li><span>床位</span><span>52</span></li>
+          </ul>
+          <ul class="care-list">
+            <li><span>诊断</span><span>肺炎</span></li>
           </ul>
         </section>
         <!-- right -->
-        <section>right</section>
+        <section>
+        <div class="care-right-top"></div>
+        <div class="care-right-footer">
+          <ul>
+            <router-link to="1" tag="li"><span>医嘱执行单</span></router-link>
+            <router-link to="1" tag="li"><span>护理列表</span></router-link>
+            <router-link to="1" tag="li"><span>临时医嘱</span></router-link>
+            <router-link to="1" tag="li"><span>长期医嘱</span></router-link>
+            <router-link to="1" tag="li"><span>生命体征</span></router-link>
+          </ul>
+        </div>
+        </section>
       </div> 
     </popup-box>
   </div>
 </template>
 <script>
 import PopupBox from 'base/popup-box/popup-box'
+import VWave from 'base/v-wave/v-wave'
 export default {
   components: {
-    PopupBox
+    PopupBox,
+    VWave
   },
   data() {
     return {

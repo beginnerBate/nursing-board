@@ -13,7 +13,7 @@ const mutations = {
     state.data = code
   },
   setcareshow (state, code) {
-    state.memoManageshow = code
+    state.careManageshow = code
   }
 }
 //acions 

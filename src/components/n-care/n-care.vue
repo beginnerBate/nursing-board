@@ -11,7 +11,7 @@
               <span class="fa " :class="{'icon-page1': !(index===i),'icon-icon_page_close': (index===i)}" @click="showBq(index)" ref='showBtn'></span>
           </div>
           <div class="item-content" v-show='index===i? false : true'>
-            <div v-for="(itemchild,n) in item.Patients" :key="itemchild.length">
+            <div v-for="(itemchild,n) in item.Patients" :key="itemchild.length" @click="$store.commit('setcareshow',true)">
               <section class="rycw" v-if="n%4 ==3">
                 <header>
                   <h1>{{itemchild.rycw}}</h1>
@@ -120,7 +120,7 @@
       </n-footer>
     </section>
     <!-- care-manage -->
-    <care-manage></care-manage>
+    <care-manage v-show="show"></care-manage>
   </div>
 </template>
 
@@ -129,6 +129,7 @@ import NFooter from 'components/n-footer/n-footer'
 import Bscroll from 'better-scroll'
 import {datalist} from 'api/care'
 import CareManage from 'components/care-manage/care-manage'
+import {mapState} from 'vuex'
 export default {
   components: {
     NFooter, CareManage
@@ -143,6 +144,11 @@ export default {
              'icon-icon_page_close': false
            }
     }
+  },
+  computed: {
+    ...mapState({
+      show: state => state.care.careManageshow
+    })
   },
   created () {
     this.$store.dispatch('initPage', {tab:false,headmenu:'责任医护'})
