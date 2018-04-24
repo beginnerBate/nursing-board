@@ -85,7 +85,7 @@ export default {
       }
     },
     _getWrapper () {
-      this.wrapper = this.$refs.alertwrapper
+      this.wrapper = this.$refs.popwrapper
     }
   }
 }
@@ -116,7 +116,7 @@ export default {
   white-space normal  
 .pop-content
   box-sizing border-box
-  max-width 80vw
+  width 80vw
   height 80vh
   background-color #ffffff
 .min

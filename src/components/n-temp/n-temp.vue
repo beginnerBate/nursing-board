@@ -1,15 +1,25 @@
 <template>
-  <div>
-temp
+  <div class="n-common">
+    <!-- n-order-top -->
+    <section class="n-common-top">
+    </section>
+    <!-- n-order-bottom -->
+    <section class="n-common-bottom">
+      <!-- footer -->
+      <n-footer>
+      </n-footer>
+    </section>
   </div>
 </template>
 
 <script>
-  export default {
-    
+import NFooter from 'components/n-footer/n-footer'
+export default {
+  components: {
+    NFooter
+  },
+  created () {
+    this.$store.dispatch('initPage', {tab:false,headmenu:'体温监测'})
   }
+}
 </script>
-
-<style scoped>
-
-</style>
