@@ -22,15 +22,24 @@
 </template>
 <script>
 import BaseBox from 'base/base-box/base-box'
+import {getMemo} from 'api/memo.js'
 export default {
   components: {
     BaseBox
   },
+  created(){
+    this.getMemo()
+  },
   methods: {
     open() {
       this.$store.commit('setMemo', true)
+    },
+    getMemo () {
+      getMemo().then((res)=>{
+        console.log(res)
+      })
     }
-  },
+  }
 }
 </script>
 <style lang="stylus" scoped>

@@ -84,17 +84,28 @@ home 路由 其他为子路由
   memo.js 
 ```
 ### 电子白板模块
+1. 难点 本地存储和打开 
 ### 责任医生模块
 ### 输液监测模块
 ### 体温监测模块
 ### 病区排班
 ##  技术相关
+##  护士宣教
+1. video.js 的使用
+> npm i vue-video-play --save
+```javaScript
+<!-- mount with component -->
+import 'video.js/dist/video-js.css'
+import {videoPlay} from 'vue-video-player'
+<!-- 注册组件 -->
+```
 ### 移动端头部设置
 ```
 ```
 ### vuex
 1. npm i vuex --save
 ### vue-router
+1. 路由嵌套 id 
 ## git 相关
 1.  git branch null-project 空项目 初始化项目
 2.  git branch base-project 项目基础搭建

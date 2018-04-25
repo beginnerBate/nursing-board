@@ -8,6 +8,7 @@ import loS from '@/common/js/loStorage'
 // 在使用vuex之前使用，先初始化相关数据
 const init = [
     {name: 'isLogin', value: ''},
+    {name: 'wardId', value: ''},
     {name: 'token', value: ''},
     {name: 'headmenu', value: '首页'},
     {name: 'headText', value: '<未登录>'},
@@ -19,6 +20,7 @@ const state = {
     headmenu: loS.getItem('headmenu', true),
     themeType: loS.getItem('themeType', true),
     isLogin: loS.getItem('isLogin', true),
+    wardId: loS.getItem('wardId', true),
     headText: loS.getItem('headText', true),
     token: loS.getItem('token',true),
     tabdisplay: false,
@@ -41,6 +43,10 @@ const mutations = {
     setLogin (state, code) {
         loS.setItem('isLogin', code)
         state.isLogin = loS.getItem('isLogin',true)
+    },
+    setwardId (state, code) {
+        loS.setItem('wardId', code)
+        state.wardId = loS.getItem('wardId',true)
     },
     setToken (state, code) {
         loS.setItem('token', code)

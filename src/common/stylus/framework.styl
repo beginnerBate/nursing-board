@@ -273,21 +273,50 @@
     flex: 1 
     height 100%
     margin-left: 8px
+    margin-right: 8px
     width: 100%
     .care-right-top
       height: calc(100% - 40px)
     .care-right-footer
       height 40px
-      background: red
       ul
         height: 100%
         display: flex
         font-size: 18px
         li
-          margin: 0 10px
-          padding: 0 10px
+          padding: 0 20px
           line-height: 40px
-          border-bottom: 2px solid green   
-            
+          cursor pointer
+.care-right-top
+  padding-top: 40px
+.n-miss
+  display: flex
+  padding: 0 15px
+.n-miss-left
+  flex: 0 0 300px
+.n-miss-right
+  flex: 1
+.miss-menu-h
+  line-height: 48px
+  text-align: center
+  font-size 20px
+  letter-spacing: 5px
+  color #ffffff
+  background: #7fd0fb
+  text-shadow: 1px 1px 5px #10b2ff
+.miss-menu-item
+  display: flex
+  cursor pointer
+  span
+    line-height: 54px
+    font-size: 18px
+    flex: 1
+    text-align: center
+.miss-menu-item:hover
+  background: #fbfbfb
+  border-left 3px solid #2dc3e8
+.miss-menu-item.router-link-exact-active
+  background: #fbfbfb
+  border-left 3px solid #2dc3e8            
 
 

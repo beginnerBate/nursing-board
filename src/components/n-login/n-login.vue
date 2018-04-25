@@ -4,7 +4,11 @@
     <popup-box :title="title" :min="min" :max="max">
       <div class="login-bg">
         <ul class="login-list">
-          <li @click="toLogin()">内科一病区</li>
+          <template v-if="WList" v-for="(item,index) in WList">
+            <li @click="toLogin(item)" :key="index">
+              <span>{{item.wardName}}</span>
+            </li>
+          </template>
         </ul>
       </div>
     </popup-box>
@@ -13,24 +17,32 @@
 
 <script>
 import PopupBox from 'base/popup-box/popup-box'
+import {getWard} from 'api/wardInfo.js'
 export default {
   components:{PopupBox},
   data() {
     return {
       title: '请点击所属区域登录',
       min:true,
-      max: true
+      max: true,
+      WList:[]
     }
   },
+  created () {
+    this.getWard()
+  },
   methods: {
-    toLogin() {
-      // 登录模拟
-      // this.loading = true
-      // login().then((res)=>{
-      //   this.loading = false
-      // })
+    toLogin(item) {
       this.$store.commit('setLogin','login')
-      this.$store.commit('changeheadText','内科一病区')
+      this.$store.commit('changeheadText',item.wardName)
+      this.$store.commit('setwardId',item.wardId)
+    },
+    getWard () {
+      getWard().then((res)=>{
+        if (res.code==200) {
+          this.WList = res.data
+        }
+      })
     }
   },
 }
@@ -46,13 +58,17 @@ export default {
   width 100%
   height 100%
   flex-wrap wrap
-  justify-content center
-  align-items  center
+  justify-content flex-start
+  align-content space-around
   li
-    padding 20px 50px
+    flex 1 1 18%
+    margin 0 18px
     border-radius 8px
     font-size 20px
-    // font-weight 600
     letter-spacing 3px
     cursor pointer
+    height 70px
+    display flex
+    justify-content center
+    align-items center
 </style>

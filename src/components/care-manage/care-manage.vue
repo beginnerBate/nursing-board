@@ -37,14 +37,18 @@
         </section>
         <!-- right -->
         <section>
-        <div class="care-right-top"></div>
+        <div class="care-right-top">
+          <keep-alive>
+          <router-view></router-view>
+          </keep-alive>
+        </div>
         <div class="care-right-footer">
           <ul>
-            <router-link to="1" tag="li"><span>医嘱执行单</span></router-link>
-            <router-link to="1" tag="li"><span>护理列表</span></router-link>
-            <router-link to="1" tag="li"><span>临时医嘱</span></router-link>
-            <router-link to="1" tag="li"><span>长期医嘱</span></router-link>
-            <router-link to="1" tag="li"><span>生命体征</span></router-link>
+            <router-link to="/care/one" tag="li"><span>医嘱执行单</span></router-link>
+            <router-link to="/care/two" tag="li"><span>护理列表</span></router-link>
+            <router-link to="/care/three" tag="li"><span>临时医嘱</span></router-link>
+            <router-link to="/care/four" tag="li"><span>长期医嘱</span></router-link>
+            <router-link to="/care/five" tag="li"><span>生命体征</span></router-link>
           </ul>
         </div>
         </section>
