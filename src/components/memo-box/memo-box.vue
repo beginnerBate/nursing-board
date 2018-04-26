@@ -12,12 +12,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- 静态数据模拟 -->
+            <!-- <tr>
               <th>下班关电脑</th>
               <th>下班关电脑不要忘记倒垃圾灌水点</th>
               <th>2017-09-16</th>
-              <th colspan="2"><span class="btn btn-warning" @click="edit">修改</span><span class="btn btn-risk">删除</span></th>
-            </tr>
+              <th colspan="2"><span class="btn btn-warning" @click="edit">修改</span><span class="btn btn-risk">删除</span></th>              
+            </tr> -->
+            <tr v-if='memolist' v-for="(item,index) in memolist" :key="index">
+              <th>{{item.title}}</th>
+              <th>{{item.context}}</th>
+              <th>{{item.createTime|formatDate}}</th>
+              <th colspan="2"><span class="btn btn-warning" @click="edit(item)">修改</span><span class="btn btn-risk" @click="remove(item.id)">删除</span></th>
+            </tr>            
           </tbody>
         </table>
       </div> 
@@ -30,6 +37,7 @@
 import PopupBox from 'base/popup-box/popup-box'
 import MemoManage from 'components/memo-box/memo-manage'
 import {mapState} from 'vuex'
+import {formatDate} from 'common/js/date'
 export default {
   components: {
     PopupBox,
@@ -41,19 +49,30 @@ export default {
       max: false
     }
   },
-  computed: {
+  computed:{
     ...mapState({
+      memolist: state=>state.memo.memolist,
       show: state => state.memo.memoManageshow
     })
+  },
+  filters: {
+    formatDate: function(time) {
+      let date = new Date(time)
+      return formatDate(date, 'yyyy-MM-dd hh:mm:ss')
+    }
   },
   methods: {
     add () {
       this.$store.commit('setmemoshow',true)
       this.$store.dispatch('memoManage',{title:"备忘录添加", icon:"fa-plus", data:{title:"",txt:""}})
     },
-    edit () {
+    edit (item) {
       this.$store.commit('setmemoshow',true)
-      this.$store.dispatch('memoManage',{title:"备忘录修改", icon:"fa-pencil-square-o", data:{title:"备忘录01",txt:"2018年开始哈哈哈"}})     
+      this.$store.dispatch('memoManage',{title:"备忘录修改", icon:"fa-pencil-square-o", data:{title:item.title,txt:item.context,id:item.id}})     
+    },
+    remove(id){
+      this.$store.commit('setmemoshow',true)
+      this.$store.dispatch('memoManage',{title:"删除备忘录", icon:"fa-delete", data:{id:id}})
     }
   },
 }

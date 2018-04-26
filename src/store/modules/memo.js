@@ -1,9 +1,11 @@
+import {getMemo} from 'api/memo'
 // 备忘录管理
 const state = {
   title:'',
   icon:'',
   data:'',
-  memoManageshow: false
+  memoManageshow: false,
+  memolist:''
 }
 // mutations
 const mutations = {
@@ -18,6 +20,9 @@ const mutations = {
   },
   setmemoshow (state, code) {
     state.memoManageshow = code
+  },
+  setmemolist (state,code) {
+    state.memolist = code
   }
 }
 //acions 
@@ -25,9 +30,16 @@ const actions = {
   memoManage({state, commit},{icon, title, data}){
     commit('setmemoIcon',icon)
     commit('setmemoTitle',title)
-    setTimeout (()=>{
-      commit('setmemoData',data)
-    },3000)
+    commit('setmemoData',data)
+  },
+  getmomelist({state,commit}){
+    getMemo().then((res)=>{
+      if (res.code ==200){
+        commit('setmemolist',res.data)
+      }else{
+        commit('setmemolist',null)
+      }
+    })
   }
 }
 export default {

@@ -35,6 +35,26 @@
   padding: 16px 0
   cursor: default
   margin-bottom: 12px
+  position relative
+.size-list
+  position absolute
+  top: 0
+  right: -120px
+  width: 120px
+  overflow hidden
+  border 1px solid #d4d4d4
+  border-top-right-radius: 6px
+  border-bottom-right-radius: 6px
+  li
+    padding: 8px 12px
+    background: #768390;
+    span
+      display: inline-block
+      width: 100%
+      background: #ffff
+      border-radius: 8px
+  li:hover
+    background: #409eff
 .choose-shape,.choose-operate
   display: flex
   padding: 0px 6px
@@ -49,7 +69,7 @@
     text-align: center
     line-height: 36px
     color: #fff
-    background: #909399
+    background: #768390
     cursor pointer
 .choose-shape>span:hover,.choose-operate>span:hover
     background: #6ab0f9
@@ -104,3 +124,12 @@
   width 120px
 .choose-active
   background  #409eff !important
+.board>.board-show
+  position fixed
+  top 0 
+  bottom 0
+  left 65px
+  width 60px
+  background-color #fafafa
+  box-shadow 1px 1px 5px #d4d4d4
+  z-index: 2

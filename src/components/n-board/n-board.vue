@@ -7,17 +7,12 @@
         <colorPicker v-model="colorValue" @change="selectColor($event)"></colorPicker>
       </div>
       <div class="choose-size">
-        <span class="btn-size">粗细</span>
-        <ul>
-          <li><span></span></li>
-          <li><span></span></li>
-          <li><span></span></li>
-          <li><span></span></li>
-          <li><span></span></li>
-          <li><span></span></li>
+        <span class="btn-size" @click="showLine=!showLine">粗细</span>
+        <ul class="size-list" v-show="showLine">
+          <li v-for="(item,index) in linelist" :key="index" @click="selectLine(item)">
+            <span :style='{height:item +"px"}'></span>
+          </li>
         </ul>
-        <input type="range" v-model="sizeValue" @change="selectLine($event)" min=3 max=45 step=3>
-        <span>{{sizeValue}} px</span>
       </div>
       <div class="choose-shape" ref="chooseBtn">
         <span @click="choosePen($event)" class="choose-active">画笔</span>
@@ -52,6 +47,8 @@ export default {
   components:{colorPicker},
   data () {
       return {
+          showLine:false,
+          linelist:[3,6,9,12,15,20],
           colorValue: '#F00056',
           sizeValue: 5,
           W: 0,
@@ -464,9 +461,10 @@ export default {
       console.log('---你重新选择了颜色----',that.COLOR)
     },
     // 选择线条粗线
-    selectLine () {
-      const that = this
-      this.LINE = this.sizeValue
+    selectLine (item) {
+      // const that = this
+      this.LINE = item
+      this.showLine = false
     },
     toBack (){
       const that = this

@@ -42,6 +42,7 @@ export default {
   },
   created () {
     this.$store.dispatch('initPage', {tab:false,headmenu:'首页'})
+    this.$store.dispatch('getdutyList')
   }
 }
 </script>

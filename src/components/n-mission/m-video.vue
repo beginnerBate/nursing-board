@@ -1,82 +1,58 @@
 <template>
   <div class="m-video">
-   <ul>
-     <li>
-  <video-player  class="video-player-box"
-                 ref="videoPlayer"
-                 :options="playerOptions"
-                 :playsinline="true"
-                 customEventName="customstatechangedeventname"
- 
-                 @play="onPlayerPlay($event)"
-                 @pause="onPlayerPause($event)"
-                 @ended="onPlayerEnded($event)"
-                 @waiting="onPlayerWaiting($event)"
-                 @playing="onPlayerPlaying($event)"
-                 @loadeddata="onPlayerLoadeddata($event)"
-                 @timeupdate="onPlayerTimeupdate($event)"
-                 @canplay="onPlayerCanplay($event)"
-                 @canplaythrough="onPlayerCanplaythrough($event)"
- 
-                 @statechanged="playerStateChanged($event)"
-                 @ready="playerReadied">
-  </video-player>
+   <ul class="m-video-list">
+     <li class="m-video-list-item" @click="play()">
+       <p><i class="fa fa-play-circle-o"></i></p>
+       <p>护士宣教视频</p>
      </li>
    </ul>
+<!-- 视频播放弹出窗 -->
+<video-play v-if="$store.state.mission.videoshow"></video-play>
   </div>
 </template>
- 
 <script>
-import 'video.js/dist/video-js.css'
-import {videoPlayer} from 'vue-video-player'
-  export default {
-    components:{
-      videoPlayer
-    },
-    data() {
-      return {
-        playerOptions: {
-          // videojs options
-          muted: true,
-          language: 'en',
-          playbackRates: [0.7, 1.0, 1.5, 2.0],
-          sources: [{
+import VideoPlay from './video-play'
+export default {
+  components:{
+    VideoPlay
+  },
+  methods: {
+    play() {
+      let mydata = [{
             type: "video/mp4",
             src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-          }],
-          poster: "/static/images/author.jpg",
-        }
-      }
-    },
-    mounted() {
-      console.log('this is current player instance object', this.player)
-    },
-    computed: {
-      player() {
-        return this.$refs.videoPlayer.player
-      }
-    },
-    methods: {
-      // listen event
-      onPlayerPlay(player) {
-        // console.log('player play!', player)
-      },
-      onPlayerPause(player) {
-        // console.log('player pause!', player)
-      },
-      // ...player event
- 
-      // or listen state event
-      playerStateChanged(playerCurrentState) {
-        // console.log('player current update state', playerCurrentState)
-      },
- 
-      // player is ready
-      playerReadied(player) {
-        console.log('the player is readied', player)
-        // you can use it to do something...
-        // player.[methods]
-      }
-    }
+          }]
+      this.$store.commit('setvideoTitle','护士宣教视频')
+      this.$store.commit('setvideoData',mydata)
+      this.$store.commit('setvideoshow',true)
+    }      
   }
+}
 </script>
+<style lang="stylus" scoped>
+.m-video
+  width 100%
+.m-video-list
+  display flex
+  flex-wrap wrap
+.m-video-list-item
+  padding-top 15px
+  flex 0 0 200px
+  height 120px
+  margin 15px
+  background #def4ff
+  border-radius 8px
+  color #999
+  display flex
+  flex-direction column
+  justify-content space-around
+  align-content center
+  p:first-child
+    font-size 40px
+    text-align center
+  &:hover
+    color #45aee0 
+  p:last-child
+    text-align center
+</style>
+

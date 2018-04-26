@@ -2,17 +2,17 @@
   <div class="index-doctor">
     <base-box title="今日值班护士" icon="fa-user-md" @open='open()'>
       <div class="index-doctor-wrapper">
-        <ul class="index-list">
-          <li>
-            <span class="name">吴来安</span>
+        <ul class="index-list" v-if="dutylist">
+          <li v-for="(item,index) in dutylist.frontLineList" :key='index+8'>
+            <span class="name">{{item.userName}}</span>
             <span class="level">[一线]</span>
           </li>
-          <li>
-            <span class="name">顾飞</span>
+          <li v-for="(item,index) in dutylist.secondLineList" :key='index+80'>
+            <span class="name">{{item.userName}}</span>
             <span class="level">[二线]</span>
           </li>
-          <li>
-            <span class="name">小橙子</span>
+          <li v-for="(item,index) in dutylist.threeLineList" :key='index+900'>
+            <span class="name">{{item.userName}}</span>
             <span class="level">[三线]</span>
           </li>
         </ul>
@@ -22,15 +22,24 @@
 </template>
 <script>
 import BaseBox from 'base/base-box/base-box'
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 export default {
   components: {
     BaseBox
+  },
+  computed: {
+    ...mapState({
+      dutylist: state=>state.duty.nursinglist
+    })
+  },
+  created(){
   },
   methods: {
     open() {
       this.$store.commit('setDuty',true)
       this.openDuty({icon:'fa-user-md',title:"今日值班护士"})
+      this.$store.commit('setdutylist',this.dutylist)
+      this.$store.commit('ondutyOk',1)
     },
     ...mapActions([
       'openDuty'

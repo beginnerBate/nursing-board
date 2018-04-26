@@ -4,99 +4,26 @@
       <div class="duty-today-wrapper">
         <!-- 今日值班列表 -->
         <section>
-          <div class="duty-show">
-            <h1>一线</h1>
+          <div class="duty-show" v-if="dutylist">
+            <h1 v-if="dutylist.frontLineList.length>0">一线</h1>
             <ul>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军发</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军吧吧</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
+              <li v-for="(item,index) in dutylist.frontLineList" :key='index+1000'>
+                <span class="name">{{item.userName}}</span>
+                <span class="btn btn-del" @click="remove(item)">删除</span>
               </li>
             </ul>
-            <h1>二线</h1>
+            <h1 v-if="dutylist.secondLineList.length>0">二线</h1>
             <ul>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
+              <li v-for="(item,index) in dutylist.secondLineList" :key='index+2000'>
+                <span class="name">{{item.userName}}</span>
+                <span class="btn btn-del" @click="remove(item)">删除</span>
               </li>
-              <li>
-                <span>曹军发</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军吧吧</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
-              </li>
-              <li>
-                <span>曹军</span>
-                <span class="btn btn-del">删除</span>
+            </ul>
+            <h1 v-if="dutylist.threeLineList.length>0">三线</h1>
+            <ul>
+              <li v-for="(item,index) in dutylist.threeLineList" :key='index+3000'>
+                <span class="name">{{item.userName}}</span>
+                <span class="btn btn-del" @click="remove(item)">删除</span>
               </li>
             </ul>
           </div>
@@ -108,46 +35,19 @@
               <div>
                 <v-select v-if="selectList" :listdata="selectList" v-model="selectValue" valueItem='一线'></v-select>
               </div>
-              <div class="duty-select-item"><input type="text" class="input"></div>
-              <div><button class="btn btn-info">添加</button></div>
+              <div class="duty-select-item">
+                <input type="text" class="input" v-model="inputValue">
+                </div>
+              <div><span class="btn btn-info" @click="add()">添加</span></div>
             </form>
         </section>
         <!-- 今日值班医生/护士 -->
         <section class="duty-select-list">
-          <ul>
-            <li><span>刘生长</span></li>
-            <li><span>虎妈</span></li>
-            <li><span>连连看</span></li>
-            <li><span>对对对</span></li>
-            <li><span>去去去</span></li>
-            <li><span>我问问</span></li>
-            <li><span>通天塔</span></li>
-            <li><span>云音乐</span></li>
-            <li><span>通天塔</span></li>
-            <li><span>滚滚滚</span></li>
-            <li><span>哈哈哈</span></li>
-            <li><span>刘生长</span></li>
-            <li><span>虎妈</span></li>
-            <li><span>连连看</span></li>
-            <li><span>对对对</span></li>
-            <li><span>去去去</span></li>
-            <li><span>我问问</span></li>
-            <li><span>通天塔</span></li>
-            <li><span>云音乐</span></li>
-            <li><span>通天塔</span></li>
-            <li><span>滚滚滚</span></li>
-            <li><span>哈哈哈</span></li>
-            <li><span>刘生长</span></li>
-            <li><span>虎妈</span></li>
-            <li><span>连连看</span></li>
-            <li><span>对对对</span></li>
-            <li><span>去去去</span></li>
-            <li><span>我问问</span></li>
-            <li><span>通天塔</span></li>
-            <li><span>云音乐</span></li>
-            <li><span>通天塔</span></li>
-            <li><span>滚滚滚</span></li>
-            <li><span>哈哈哈</span></li>
+          <ul v-if="dutylist">
+            <!-- <li><span>刘生长</span></li> -->
+            <li v-for="(item,index) in dutylist.allUsersList" :key='index+3000'>
+              <span class="name" @click="selectduty(item)">{{item.userName}}</span>
+            </li>
           </ul>
         </section>
       </div>
@@ -157,31 +57,56 @@
 <script>
 import PopupBox from 'base/popup-box/popup-box'
 import VSelect from 'base/v-select/v-select'
-import {mapState} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
+import {deleteduty,addDuty} from 'api/duty'
 export default {
   components:{PopupBox, VSelect}, 
   props: {
     min: false,
     max: false,
-    dutyList:'',
+    // dutylist:'',
     selectList:{
-      default:() => [{text:'一线',value:'01'},{text:'二线',value:'02'},{text:'三线',value:'03'}]
+      default:() => [{text:'一线',value:0},{text:'二线',value:1},{text:'三线',value:2}]
     }
   },
   data () {
     return {
-      selectValue:''
+      selectValue:'',
+      selectId:'',
+      inputValue:''
     }
   },
   computed: {
     ...mapState({
       title: state => state.duty.title,
       icon: state => state.duty.icon,
-      onDuty: state => state.duty.onDuty
-    })
+      onDuty: state => state.duty.onDuty,
+      nursinglist: state=>state.duty.nursinglist,
+      doctorlist: state=>state.duty.doctorlist
+    }),
+    ...mapGetters(['dutylist'])
   },
-  created () {
-    console.log(this.title)
+  methods: {
+    remove(item) {
+      deleteduty(item.id).then((res)=>{
+        if(res.code==200){
+          this.$store.dispatch('getdutyList')
+          // this._seresh()
+        }
+      })
+    },
+    add(){
+      addDuty(this.selectId,{line:this.selectValue}).then((res)=>{
+        if(res.code==200){
+          this.$store.dispatch('getdutyList')
+          // this._seresh()
+        }
+      })
+    },
+    selectduty(item){
+      this.inputValue = item.userName
+      this.selectId = item.id
+    }
   }
 }
 </script>

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import duty from './modules/duty'
 import memo from './modules/memo'
 import care from './modules/care'
+import mission from './modules/mission'
 import loS from '@/common/js/loStorage'
 
 // 在使用vuex之前使用，先初始化相关数据
@@ -73,7 +74,8 @@ export default new Vuex.Store({
     modules: {
         duty,
         memo,
-        care
+        care,
+        mission
     },
     state,
     mutations,
