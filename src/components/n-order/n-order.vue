@@ -164,20 +164,23 @@
       <n-footer>
         <ul class="order-footer">
           <li>
-            <span class="btn-cancle">日期选择</span>
-          </li>
-          <li>
             <span class="btn-cancle">上周</span>
           </li>
           <li>
-            <span class="btn-cancle">医生</span>
-          </li>
-          <li>
-            <span class="btn-cancle">护士</span>
+            <span class="btn-cancle" @click="changeDate()">
+              <label for="data">日期选择</label>
+            </span>
+            <input type="date" name="data" id="data" hidden>
           </li>
           <li>
             <span class="btn-cancle">下周</span>
           </li>
+          <li>
+            <span class="btn-select">医生</span>
+          </li>
+          <li>
+            <span class="btn-select">护士</span>
+          </li>          
         </ul>
       </n-footer>
     </section>
@@ -192,6 +195,11 @@ export default {
   },
   created () {
     this.$store.dispatch('initPage', {tab:false,headmenu:'病区排班'})
-  }
+  },
+  methods: {
+    changeDate() {
+      document.getElementById('data').hidden=false
+    }
+  },
 }
 </script>

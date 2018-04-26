@@ -24,7 +24,7 @@
         <span @click="chooseEaser()">皮擦</span>
         <span @click="chooseCancel()">撤销</span>
         <span @click="chooseClear()">清空</span>
-        <span @click="chooseClear()">保存</span>
+        <span @click="choosesave()">保存</span>
       </div>
       <div class="choose-index">
         <span @click="backHome()" class="btn btn-green">首页</span>
@@ -34,8 +34,13 @@
         
       </div>
     </div>
-    <div class="board-show">
-
+    <div class="board-show" v-if="showImage.length>0">
+       <ul>
+         <li>
+           <img :src="showImage[0]" alt="">
+           <span>画板01</span>
+         </li>
+       </ul>
     </div>
   </div>
 </template>
@@ -47,6 +52,7 @@ export default {
   components:{colorPicker},
   data () {
       return {
+          showImage:[],
           showLine:false,
           linelist:[3,6,9,12,15,20],
           colorValue: '#F00056',
@@ -591,7 +597,17 @@ export default {
         element.classList.remove('choose-active')
       });
       event.target.classList.add('choose-active')
-    }
+    },
+    // 保存白板
+    choosesave(){
+      this.showImage.push(this.$refs.myboard.toDataURL("image/png"))
+      console.log(this.showImage)
+    },
+    convert(canvas) { //画布转化为图片
+            var image = new Image();
+            image.src = canvas.toDataURL("image/png");
+            return image;
+        } 
   },
   mounted () {
     this.$nextTick(()=>{
