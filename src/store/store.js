@@ -14,6 +14,7 @@ const init = [
     {name: 'headmenu', value: '首页'},
     {name: 'headText', value: '<未登录>'},
     {name: 'themeType',  value: 'theme-day'},
+    {name: 'canvas',  value: [] },
 ]
 loS.initData(init)
 Vue.use(Vuex)
@@ -24,6 +25,7 @@ const state = {
     wardId: loS.getItem('wardId', true),
     headText: loS.getItem('headText', true),
     token: loS.getItem('token',true),
+    canvas: loS.getItem('canvas',true),
     tabdisplay: false,
     dutyopen:false,
     memoopen:false
@@ -52,6 +54,10 @@ const mutations = {
     setToken (state, code) {
         loS.setItem('token', code)
         state.token = loS.getItem('token',true)
+    },
+    setCanvas (state, code) {
+        loS.setItem('canvas', code)
+        state.canvas = loS.getItem('canvas',true)
     },
     setTab (state, code) {
         state.tabdisplay = code

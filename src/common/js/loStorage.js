@@ -5,7 +5,7 @@ function getItem (name, type) {
   let res = localStorage.getItem(name)
   if (res !== null) {
     if(!type) { //为布尔值
-      res = json.parse(res)
+      res = JSON.parse(res)
     }
   }
   return res

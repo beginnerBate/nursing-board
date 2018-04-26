@@ -34,11 +34,15 @@
         
       </div>
     </div>
-    <div class="board-show" v-if="showImage.length>0">
+    <div class="board-show" ref="showWrap" v-show="showImage.length>0">
        <ul>
-         <li>
-           <img :src="showImage[0]" alt="">
-           <span>画板01</span>
+         <li v-for="(item,index) in showImage" 
+         :key="index" 
+         @click="loadcanvas(item.src,index)" 
+         :class="{active: index==i}">
+           <img :src="item.src" alt="">
+           <span>画板{{index}}</span>
+           <span class="btn-close" @touchstart.stop="removeImg(index)"><i class="fa fa-close"></i></span>
          </li>
        </ul>
     </div>
@@ -46,13 +50,16 @@
 </template>
 <script>
 import colorPicker from './color-picker'
+import Bscroll from 'better-scroll'
+import index from 'vue';
 var MYDATA = []
 var startEvent,moveEvent,endEvent
 export default {
   components:{colorPicker},
   data () {
       return {
-          showImage:[],
+           i:-1,
+          scroll:"",
           showLine:false,
           linelist:[3,6,9,12,15,20],
           colorValue: '#F00056',
@@ -68,10 +75,35 @@ export default {
           isactive:false
       }
   },
+  computed: {
+    showImage(){
+      return JSON.parse(this.$store.state.canvas)
+    }
+  },
   created() {
     this.$store.commit('setTab',false)
   },
+  watch: {
+    showImage(newValue, oldValue) {
+      if (this.showImage.length>0){
+      this.$nextTick(()=>{
+      this._initScroll()
+        })
+      }
+    }
+  },
   methods: {
+    removeImg(n){
+      console.log(1)
+      let canvas = []
+      canvas.push(...JSON.parse(this.$store.state.canvas))  
+      console.log(canvas,n)    
+      canvas.splice(n-1,1)
+      this.$store.commit('setCanvas',JSON.stringify(canvas))     
+    },
+    _initScroll() {
+      this.scroll = new Bscroll(this.$refs.showWrap,{click:true})
+    },
     //  start init canvas
     init () {
       this._showBoard()
@@ -600,18 +632,31 @@ export default {
     },
     // 保存白板
     choosesave(){
-      this.showImage.push(this.$refs.myboard.toDataURL("image/png"))
-      console.log(this.showImage)
+      let canvas = []
+      canvas.push(...JSON.parse(this.$store.state.canvas))
+      canvas.push({src:this.$refs.myboard.toDataURL("image/png")})
+      this.$store.commit('setCanvas',JSON.stringify(canvas))
     },
     convert(canvas) { //画布转化为图片
-            var image = new Image();
-            image.src = canvas.toDataURL("image/png");
-            return image;
-        } 
+      var image = new Image();
+      image.src = canvas.toDataURL("image/png");
+      return image;
+    },
+    loadcanvas(src, index){
+      this.i = index
+       var img = new Image();  
+       img.src = src
+       const that = this
+       img.onload = function(){
+         that.CTX.clearRect(0,0,that.W,that.H)
+         that.CTX.drawImage(img, 0, 0)
+       }
+    } 
   },
   mounted () {
     this.$nextTick(()=>{
       this.init()
+      this._initScroll()
     })
   }
 }

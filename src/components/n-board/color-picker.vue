@@ -226,6 +226,7 @@ export default {
     box-shadow: 0 0 5px rgba(0,0,0,.15) 
     opacity: 0 
     transition: all .3s ease
+    z-index 3
     h3 
       margin: 0 
       font-size: 14px 
