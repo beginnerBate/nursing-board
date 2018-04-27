@@ -1,11 +1,11 @@
 <template>
   <div class="m-video">
-   <ul class="m-video-list">
-     <li class="m-video-list-item" @click="play()">
-       <p><i class="fa fa-folder-open-o"></i></p>
-       <p>护士的自我修养</p>
+   <ul class="m-video-list" v-if="list">
+     <li class="m-video-list-item" v-for="(item,index) in list" :key='index' @click="play(item)">
+       <p><i class="fa fa-file-text-o"></i></p>
+       <p>{{item.name}}</p>
      </li>
-     <li class="m-video-list-item" @click="play()">
+     <!-- <li class="m-video-list-item" @click="play()">
        <p><i class="fa fa-folder-open-o"></i></p>
        <p>护士入门芝兰</p>
      </li>
@@ -16,7 +16,7 @@
      <li class="m-video-list-item" @click="play()">
        <p><i class="fa fa-folder-open-o"></i></p>
        <p>护士必读课程</p>
-     </li>
+     </li> -->
    </ul>
 <!-- 视频播放弹出窗 -->
 <!-- <video-play v-if="$store.state.mission.videoshow"></video-play> -->
@@ -24,15 +24,32 @@
 </template>
 <script>
 import VideoPlay from './video-play'
+import {nurseFilesType} from 'api/mission'
 export default {
   components:{
     VideoPlay
   },
+  data () {
+    return {
+      list:''
+    }
+  },
+  created(){
+    this.nurseFilesType()
+  },  
   methods: {
     play() {
       // this.$store.commit('setvideoshow',true)
+    },
+  nurseFilesType () {
+      nurseFilesType({typeName:'文件'}).then((res)=>{
+        if(res.code ==200){
+          this.list = res.data
+        }
+      })
     }      
-  }
+  },
+  
 }
 </script>
 <style lang="stylus" scoped>

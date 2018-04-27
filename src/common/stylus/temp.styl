@@ -1,0 +1,160 @@
+// 颜色规范
+$color-theme = #409eff
+$color-success = #a2d489
+$color-warning = #E6A23C
+$color-danger = #F56C6C
+$color-info = #909399
+
+.m-tab
+  position relative
+  display flex
+  padding: 5px 32px
+  font-size 20px
+  background: $color-theme
+  border-bottom:  1px solid #f1f7fd
+.m-tab-item
+  // border 1px solid #d4d4d4
+  border-radius: 4px
+  padding: 8px 16px
+  margin: 0 10px
+  color #d4d4d4
+.exitBtn
+  position absolute
+  display: inline-block;
+  padding: 0 12px
+  right 50px
+  top 10px
+  font-size: 20px
+  font-weight: 600
+  letter-spacing: 2px
+  color #f2f2f2
+  text-align: center
+  line-height: 30px
+  border-radius: 5px
+  text-shadow: 1px 1px 4px #0957a7
+.m-tab-item.router-link-exact-active
+  border 1px solid $color-theme
+  background: $color-warning
+  color: #ffffff
+.m-temp
+  padding: 1.2vh 2vh
+  height: 90vh;
+  overflow: hidden;
+.m-temp-content
+  display: flex
+  flex-wrap: wrap
+.m-temp-item
+  flex 1 1 160px
+  max-width 190px
+  height calc((90vh / 6) - 1.8vh) 
+  min-height calc((90vh / 6) - 1.8vh) 
+  color $color-info
+  padding 12px
+  margin: 0.8vh
+  border-radius: 8px
+  background: rgba(69, 174, 224, 0.34)
+  box-shadow: 0 0 18px 0 rgba(57,141,238,0.12)
+.bed-num
+  color #fafafa
+  font-size: 14px
+  text-align: left 
+  border-bottom: 1px solid #efeffe
+  padding-bottom: 6px
+.temp-txt 
+  font-size 20px
+  text-align: center
+  padding-top: 16px
+  padding-bottom: 14px
+  color: #007dff
+.time
+  text-align: right
+  font-size 12px
+  color #fafafa
+.m-trans
+  display: flex
+  padding: 12px 20px
+.m-trans-wrapper
+  height 90vh
+  overflow hidden 
+  flex: 1 
+.m-trans-content
+  display: flex
+  flex-wrap: wrap
+  margin-right: 20px
+  align-content: flex-start
+.m-trans-item
+  flex 1 1 160px
+  max-width 190px
+  height calc((90vh / 5) - 1.6vh) 
+  min-height calc((90vh / 5) - 1.6vh) 
+  // min-height: 15.4vh;
+  // color #393939
+  color #ffffff
+  padding 12px
+  margin: 0.8vh
+  border-radius: 8px
+  // background: #ffffff
+  background: $color-success
+  box-shadow: 0 0 18px 0 rgba(57,141,238,0.12)
+.m-trans-item p
+  padding: 6px 0
+  font-size: 16px
+  padding-left 4px
+  i
+    font-size 12px
+    // font-style: italic
+    font-family: Arial, Helvetica, sans-serif
+.m-trans-item p:first-child
+  border-bottom: 1px solid #efefef
+.m-trans-item p:not(:first-child)
+  color: #004184
+.m-trans-item.wraning
+  background: $color-warning
+  p
+    color #ffffff
+.m-trans-item.danger
+  background: $color-danger
+  p
+    color: #ffffff    
+.m-trans-alarm
+  flex 0 0 280px
+  display: flex
+  flex-direction column
+  padding-top: 12px
+.m-trans-alarm-warning
+  flex 0 0 38vh
+  h1
+    background: $color-warning
+    color #ffffff
+    height 40px
+    line-height: 40px
+    text-align: center
+    border-top-left-radius: 8px
+    border-top-right-radius: 8px
+  div>ul>li
+    color: $color-warning
+.m-trans-alarm-wrapper
+  height 38vh
+  border-left 1px solid #d4d4d4
+  border-right 1px solid #d4d4d4
+  border-bottom 1px solid #d4d4d4
+  overflow hidden
+.m-trans-alarm-danger
+  flex: 0 0 38vh
+  margin-top: 20px
+  h1
+    background: $color-danger
+    color #ffffff
+    height 40px
+    line-height: 40px
+    text-align: center
+    border-top-left-radius: 8px
+    border-top-right-radius: 8px
+  div>ul>li
+    color $color-danger
+.m-trans-alarm-wrapper ul li
+  border-bottom: 1px solid #d4d4d4
+  padding: 12px 16px
+  box-sizing: border-box
+  display: flex
+  justify-content: space-around

@@ -1,12 +1,17 @@
 // 今日值班
 import {BASEURL02,param} from './config'
 import axios from 'axios'
-axios.defaults.headers.token  = localStorage.getItem('wardId')
+const Axios = axios.create({
+  headers:{
+    token: localStorage.getItem('wardId')
+  }
+})
+// axios.defaults.headers.token  = localStorage.getItem('wardId')
 // 1.信息查询（护士/医生）
 // 职责标志：0-医生1-护士
 export function getusers (nameFlag) {
   let url = BASEURL02 + `users/getUsers/${nameFlag}`
-  return axios.get(url).then((res)=>{
+  return Axios.get(url).then((res)=>{
     return Promise.resolve(res.data)
   })
 }
@@ -15,7 +20,7 @@ export function getusers (nameFlag) {
 export function addDuty (id,data) {
   let url = BASEURL02 + `users/addUsers/${id}`
   // url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
-  return axios.put(url,data).then((res)=>{
+  return Axios.put(url,data).then((res)=>{
     return Promise.resolve(res.data)
   })
 }
@@ -24,7 +29,7 @@ export function addDuty (id,data) {
 export function updateMemo (data,id) {
   let url = BASEURL01 + 'memos/update/' + id
   // url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
-  return axios.put(url,data).then((res)=>{
+  return Axios.put(url,data).then((res)=>{
     return Promise.resolve(res.data)
   })
 }
@@ -33,7 +38,7 @@ export function updateMemo (data,id) {
 export function deleteduty (id) {
   let url = BASEURL02 + `users/deleteUser/${id}`
   // url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
-  return axios.put(url).then((res)=>{
+  return Axios.put(url).then((res)=>{
     return Promise.resolve(res.data)
   })
 }

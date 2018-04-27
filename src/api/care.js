@@ -7,9 +7,13 @@ import axios from 'axios'
 //     return Promise.resolve(res.data)
 //   })
 // }
-
+const Axios = axios.create({
+  headers:{
+    token: localStorage.getItem('wardId')
+  }
+})
 export function datalist() {
-  return axios.get('static/ajax.json').then((res)=>{
+  return Axios.get('static/ajax.json').then((res)=>{
     return Promise.resolve(res.data)
   })
 }

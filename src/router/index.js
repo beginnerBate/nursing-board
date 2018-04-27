@@ -83,12 +83,12 @@ export default new Router({
           component: NMission,
           children:[
             {
-              path:"video",
+              path:"0",
               name:'video',
               component:MVideo
             },
             {
-              path: 'file',
+              path: "1",
               name:'file',
               component:MFile
             }

@@ -1,10 +1,15 @@
 import {BASEURL01,param} from './config'
 import axios from 'axios'
-axios.defaults.headers.token  = localStorage.getItem('wardId')
+// axios.defaults.headers.token  = localStorage.getItem('wardId')
+const Axios = axios.create({
+  headers:{
+    token: localStorage.getItem('wardId')
+  }
+})
 // 1.获取所有备忘录
 export function getMemo () {
   let url = BASEURL01 + 'memos/get'
-  return axios.get(url).then((res)=>{
+  return Axios.get(url).then((res)=>{
     return Promise.resolve(res.data)
   })
 }
@@ -13,7 +18,7 @@ export function getMemo () {
 export function addMemo (data) {
   let url = BASEURL01 + 'memos/add'
   // url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
-  return axios.post(url,data).then((res)=>{
+  return Axios.post(url,data).then((res)=>{
     return Promise.resolve(res.data)
   })
 }
@@ -22,7 +27,7 @@ export function addMemo (data) {
 export function updateMemo (data,id) {
   let url = BASEURL01 + 'memos/update/' + id
   // url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
-  return axios.put(url,data).then((res)=>{
+  return Axios.put(url,data).then((res)=>{
     return Promise.resolve(res.data)
   })
 }
@@ -31,7 +36,7 @@ export function updateMemo (data,id) {
 export function deleteMemo (id) {
   let url = BASEURL01 + 'memos/delete/' + id
   // url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
-  return axios.delete(url).then((res)=>{
+  return Axios.delete(url).then((res)=>{
     return Promise.resolve(res.data)
   })
 }

@@ -1,9 +1,9 @@
 <template>
   <div class="m-video">
-   <ul class="m-video-list">
-     <li class="m-video-list-item" @click="play()">
+   <ul class="m-video-list" v-if="list">
+     <li class="m-video-list-item" v-for="(item,index) in list" :key='index' @click="play(item)">
        <p><i class="fa fa-play-circle-o"></i></p>
-       <p>护士宣教视频</p>
+       <p>{{item.name}}</p>
      </li>
    </ul>
 <!-- 视频播放弹出窗 -->
@@ -12,19 +12,36 @@
 </template>
 <script>
 import VideoPlay from './video-play'
+import {nurseFilesType} from 'api/mission'
 export default {
   components:{
     VideoPlay
   },
+  data () {
+    return {
+      list:''
+    }
+  },
+  created(){
+    this.nurseFilesType()
+  },
   methods: {
-    play() {
+    play(item) {
       let mydata = [{
-            type: "video/mp4",
-            src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+            type: `video/${item.type}`,
+            src: item.url
           }]
+
       this.$store.commit('setvideoTitle','护士宣教视频')
       this.$store.commit('setvideoData',mydata)
       this.$store.commit('setvideoshow',true)
+    },
+    nurseFilesType () {
+      nurseFilesType({typeName:'视频'}).then((res)=>{
+        if(res.code ==200){
+          this.list = res.data
+        }
+      })
     }      
   }
 }

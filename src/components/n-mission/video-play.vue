@@ -37,7 +37,7 @@ import {videoPlayer} from 'vue-video-player'
       }
     },
     mounted() {
-      console.log('this is current player instance object', this.player)
+      // console.log('this is current player instance object', this.player)
     },
     computed: {
       player() {

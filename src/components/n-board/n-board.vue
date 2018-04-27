@@ -62,12 +62,12 @@ export default {
           scroll:"",
           showLine:false,
           linelist:[3,6,9,12,15,20],
-          colorValue: '#F00056',
+          colorValue: '#4e81bb',
           sizeValue: 5,
           W: 0,
           H: 0,
           CTX: null,
-          COLOR:'#F00056',
+          COLOR:'#4e81bb',
           LINE: 5,
           PENS:0,
           ERAS:0,
@@ -82,6 +82,10 @@ export default {
   },
   created() {
     this.$store.commit('setTab',false)
+    if (this.showImage.length===0){
+      this.$store.commit('setCanvas',JSON.stringify([]))
+    }
+    
   },
   watch: {
     showImage(newValue, oldValue) {

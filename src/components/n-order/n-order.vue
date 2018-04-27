@@ -5,8 +5,8 @@
       <ul class="order-list">
         <li class="order-list-date">
           <div></div>
-          <div>2018-04-16 周一</div>
-          <div>2018-04-17 周二</div>
+          <div>{{startTime}} 周一</div>
+          <div> {{ranage}}周二</div>
           <div>2018-04-18 周三</div>
           <div>2018-04-19 周四</div>
           <div>2018-04-20 周五</div>
@@ -189,16 +189,46 @@
 
 <script>
 import NFooter from 'components/n-footer/n-footer'
+import {getOrder} from 'api/order'
+import {dateAdd} from 'common/api/date'
 export default {
   components: {
     NFooter
   },
+  data () {
+    return {
+      types: '0',
+      time:'',
+      week:'',
+      startTime:'',
+      list:'',
+    }
+  },
+  computed:{
+    ranage(){
+      let startDate = new Date(this.startTime)
+        startDate = +startDate + 1000*60*60*24;
+        startDate = new Date(startDate);
+        var nextStartDate = startDate.getFullYear()+"-"+(startDate.getMonth()+1)+"-"+startDate.getDate();
+        return nextStartDate
+    }
+  },
   created () {
     this.$store.dispatch('initPage', {tab:false,headmenu:'病区排班'})
+    this.getOrder()
   },
   methods: {
-    changeDate() {
+    changeDate () {
       document.getElementById('data').hidden=false
+    },
+    getOrder () {
+      getOrder({types:this.types, time:this.time}).then((res)=>{
+        if (res.code ==200) {
+          this.week = res.data.week
+          this.startTime = res.data.startTime
+          this.list = res.data.list
+        }
+      })
     }
   },
 }
