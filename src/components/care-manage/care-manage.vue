@@ -59,6 +59,7 @@
 <script>
 import PopupBox from 'base/popup-box/popup-box'
 import VWave from 'base/v-wave/v-wave'
+import {mapState} from 'vuex'
 export default {
   components: {
     PopupBox,
@@ -68,7 +69,12 @@ export default {
     return {
       off: true
     }
-  }
+  },
+  computed: {
+    ...mapState({
+      list: state=>state.care.patInfo
+    })
+  },
 }
 </script>
 <style lang="stylus" scoped>

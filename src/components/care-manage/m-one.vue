@@ -56,9 +56,17 @@
 </template>
 
 <script>
-  export default {
-    
+import {mapState} from 'vuex'
+export default {
+  computed:{
+    ...mapState({
+      list: state =>state.care.orders
+    }),
+    created(){
+      console.log(list)
+    }
   }
+}
 </script>
 
 <style scoped>

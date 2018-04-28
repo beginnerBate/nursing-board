@@ -5,16 +5,16 @@
       <ul class="care-list">
         <li v-for="(item,index) in dataList" :key="index" class="care-list-item">
           <div class="item-title">
-              <span>{{item.Doctor}}</span>
-              <span>简介</span>
-              <span>患者({{item.Prompt}})</span>
+              <span>{{item.docHead}}</span>
+              <!-- <span>简介</span> -->
+              <span>患者({{item.patcount}})</span>
               <span class="fa " :class="{'icon-page1': !(index===i),'icon-icon_page_close': (index===i)}" @click="showBq(index)" ref='showBtn'></span>
           </div>
           <div class="item-content" v-show='index===i? false : true'>
-            <div v-for="(itemchild,n) in item.Patients" :key="itemchild.length" @click="$store.commit('setcareshow',true)">
-              <section class="rycw" v-if="n%4 ==3">
+            <div v-for="(itemchild,n) in item.listForPat" :key="n+100" @click="showCare(itemchild.patId)">
+              <section class="rycw">
                 <header>
-                  <h1>{{itemchild.rycw}}</h1>
+                  <h1>{{itemchild.bedIn}}</h1>
                   <p class="rycw-title">
                     <span>轻</span>
                     <span></span>
@@ -22,11 +22,11 @@
                 </header>
                 <div class="rycw-info">
                   <p class="rycw-info-item">
-                    <span>文洁华</span>
-                    <span>172739</span>
+                    <span>{{itemchild.patName}}</span>
+                    <span>{{itemchild.hospNo}}</span>
                   </p>
                   <p class="rycw-info-item">
-                    <span>男 36岁</span>
+                    <span>{{itemchild.sex|sex}} {{itemchild.age}}</span>
                     <span>12-05</span>
                   </p>
                   <p class="rycw-info-day">
@@ -38,11 +38,11 @@
                   </p>
                   <p class="rycw-name">
                     <span></span>
-                    <span>医护:<i>何耀琴</i>/黄丽雪</span>
+                    <span>医护:<i>{{itemchild.nurseResp}}</i>/{{item.docHead}}</span>
                   </p>
                 </div>      
               </section> 
-              <section class="rycw medium" v-if="n%4 ==2">
+              <!-- <section class="rycw medium" v-if="n%4 ==2">
                 <header>
                   <h1>{{itemchild.rycw}}</h1>
                   <p class="rycw-title">
@@ -56,7 +56,7 @@
                     <span>172739</span>
                   </p>
                   <p class="rycw-info-item">
-                    <span>男 36岁</span>
+                    <span> 36岁</span>
                     <span>12-05</span>
                   </p>
                   <p class="rycw-info-day">
@@ -107,7 +107,7 @@
                 <div class="rycw-info-emptybed">
                     <i class="icon-emptybed"></i>
                 </div>      
-              </section>  
+              </section>   -->
             </div>
           </div>
         </li>
@@ -129,7 +129,7 @@ import NFooter from 'components/n-footer/n-footer'
 import Bscroll from 'better-scroll'
 import {datalist} from 'api/care'
 import CareManage from 'components/care-manage/care-manage'
-import {mapState} from 'vuex'
+import {mapState,mapActions} from 'vuex'
 export default {
   components: {
     NFooter, CareManage
@@ -143,6 +143,11 @@ export default {
              'icon-page1': true,
              'icon-icon_page_close': false
            }
+    }
+  },
+  filters:{
+    sex: function(value){
+      return value==0? '女' : '男'
     }
   },
   computed: {
@@ -160,7 +165,6 @@ export default {
           setTimeout(function(){
             that.scroll = new Bscroll(that.$refs.carewrapper,{click:true})
           },1000)
-
         })
     },
     methods: {
@@ -170,14 +174,20 @@ export default {
             //  请求数据
             var that = this;
             datalist().then((res)=>{
-              that.dataList = res.businessInfo.rows
-              console.log(that.datalist)
+              if (res.code =200) {
+                that.dataList = res.data
+              }else{
+                that.dataList = ''
+              }
             })
         },
-      showBq(index) {
+      showBq (index) {
         this.i === index ? this.i = -1 :  this.i = index
-       console.log(this.i,index)
-      }
+      },
+      showCare(patId) {        
+        this.getcaredata({"patId":patId})
+      },
+      ...mapActions(['getcaredata'])
     }
 }
 </script>

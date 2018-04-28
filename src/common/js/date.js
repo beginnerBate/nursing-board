@@ -22,9 +22,9 @@ function padLeftZero (str) {
   return ('00' + str).substr(str.length);
 };
 
-export function dateAdd(startDate) {
+export function dateAdd(startDate,day) {
     startDate = new Date(startDate);
-    startDate = +startDate + 1000*60*60*24;
+    startDate = +startDate + 1000*60*60*24*day;
     startDate = new Date(startDate);
     var nextStartDate = startDate.getFullYear()+"-"+(startDate.getMonth()+1)+"-"+startDate.getDate();
     return nextStartDate;

@@ -1,19 +1,27 @@
-import axios from 'axios'
-// import {BASEURL} from './config'
-// export function getTrans (data) {
-//   // let url = BASEURL+'infusionMonitors'
-//   url += (url.indexOf('?') < 0 ? '?' : '&') + param(data)
-//   return axios.get(url).then((res) => {
-//     return Promise.resolve(res.data)
-//   })
-// }
-const Axios = axios.create({
-  headers:{
-    token: localStorage.getItem('wardId')
-  }
-})
+import {Axios,getUrl} from './config'
 export function datalist() {
-  return Axios.get('static/ajax.json').then((res)=>{
-    return Promise.resolve(res.data)
+  return getUrl('port03').then((BASEURL)=>{
+    let url = BASEURL + 'patInfo/getPatInfos'
+    return Axios.get(url).then((res)=>{
+      return Promise.resolve(res.data)
+    })
+  })
+}
+// 病人详情
+export function patInfo (patId) {
+  return getUrl('port03').then((BASEURL)=>{
+    let url = BASEURL + `patInfo/getPatInfoById/${patId}`
+    return Axios.get(url).then((res)=>{
+      return Promise.resolve(res.data)
+    })    
+  })
+}
+// 医嘱执行单
+export function orders (patId) {
+  return getUrl('port03').then((BASEURL)=>{
+    let url = BASEURL + `orders/getOrdersByPatId/${patId}`
+    return Axios.get(url).then((res)=>{
+      return Promise.resolve(res.data)
+    })    
   })
 }

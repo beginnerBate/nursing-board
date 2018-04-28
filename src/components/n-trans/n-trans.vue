@@ -67,6 +67,7 @@ import {getServerTime} from 'api/getServerTime.js'
 import Bscroll from 'better-scroll'
 import {formatDate} from 'common/js/date.js'
 import TransRecord from 'components/trans-record/trans-record'
+import axios from 'axios'
 export default {
   components: {
     NFooter,
@@ -104,13 +105,27 @@ export default {
   },
     methods: {
     getstartTime () {
-      return getServerTime().then((res)=>{
-        let mydate = new Date(res.sysDateTime)
-        let date = new Date( mydate.setMinutes(mydate.getMinutes() - 10))
-        this.startTime = formatDate(date, 'yyyy-MM-d hh:mm:ss')
-        // return Promise.resolve(this.startTime)
-        return Promise.resolve('2018-4-10 12:00:00')
-      })
+        return axios.get('./static/config.json').then((res)=>{
+        let mytime = res.data.startTime
+        if (mytime && mytime.length>0){
+          return Promise.resolve(mytime)
+        }else {
+          return getServerTime().then((res)=>{
+            let mydate = new Date(res.sysDateTime)
+            let date = new Date( mydate.setMinutes(mydate.getMinutes() - 10))
+            this.startTime = formatDate(date, 'yyyy-MM-d hh:mm:ss')
+            return Promise.resolve(this.startTime)
+            // return Promise.resolve('2018-4-10 12:00:00')
+          })
+        }
+      })     
+      // return getServerTime().then((res)=>{
+      //   let mydate = new Date(res.sysDateTime)
+      //   let date = new Date( mydate.setMinutes(mydate.getMinutes() - 10))
+      //   this.startTime = formatDate(date, 'yyyy-MM-d hh:mm:ss')
+      //   // return Promise.resolve(this.startTime)
+      //   return Promise.resolve('2018-4-10 12:00:00')
+      // })
     },
    getTransDate () {
      this.getstartTime().then((data)=>{

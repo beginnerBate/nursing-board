@@ -6,14 +6,29 @@
         <li class="order-list-date">
           <div></div>
           <div>{{startTime}} 周一</div>
-          <div> {{ranage}}周二</div>
-          <div>2018-04-18 周三</div>
-          <div>2018-04-19 周四</div>
-          <div>2018-04-20 周五</div>
-          <div>2018-04-21 周六</div>
-          <div>2018-04-22 周日</div>
+          <div>{{startTime|dateAdd(2)}} 周二</div>
+          <div>{{startTime|dateAdd(3)}} 周三</div>
+          <div>{{startTime|dateAdd(4)}} 周四</div>
+          <div>{{startTime|dateAdd(5)}} 周五</div>
+          <div>{{startTime|dateAdd(6)}} 周六</div>
+          <div>2{{startTime|dateAdd(7)}} 周日</div>
         </li>
-        <li class="order-list-item">
+        <li class="order-list-item" v-for="(item,index) in list" :key="index">
+          <div>
+            <h1>{{item.name}}</h1>
+            <!-- <h1>医师</h1> -->
+          </div>
+          <div v-for="(data,index) in item.list" :key="index">
+            <img :src='"./"+data.type+".png"' alt="">
+          </div>
+          <!-- <div><img src="" alt=""></div>
+          <div><img src="" alt=""></div>
+          <div><img src="" alt=""></div>
+          <div><img src="" alt=""></div>
+          <div><img src="" alt=""></div>
+          <div><img src="" alt=""></div> -->
+        </li>
+        <!-- <li class="order-list-item">
           <div>
             <h1>谢晓燕</h1>
             <h1>医师</h1>
@@ -25,137 +40,7 @@
           <div><img src="" alt=""></div>
           <div><img src="" alt=""></div>
           <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
-        <li class="order-list-item">
-          <div>
-            <h1>谢晓燕</h1>
-            <h1>医师</h1>
-          </div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-          <div><img src="" alt=""></div>
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- n-order-bottom -->
@@ -176,10 +61,10 @@
             <span class="btn-cancle">下周</span>
           </li>
           <li>
-            <span class="btn-select">医生</span>
+            <span class="btn-select" @click="doctorData()">医生</span>
           </li>
           <li>
-            <span class="btn-select">护士</span>
+            <span class="btn-select" @click="nurseData()">护士</span>
           </li>          
         </ul>
       </n-footer>
@@ -190,7 +75,7 @@
 <script>
 import NFooter from 'components/n-footer/n-footer'
 import {getOrder} from 'api/order'
-import {dateAdd} from 'common/api/date'
+import {dateAdd} from 'common/js/date'
 export default {
   components: {
     NFooter
@@ -198,10 +83,19 @@ export default {
   data () {
     return {
       types: '0',
-      time:'',
+      time:'2018-1-1',
       week:'',
       startTime:'',
       list:'',
+    }
+  },
+  filters: {
+    dateAdd: function(value,day) {
+      let startDate = new Date(value)
+        startDate = startDate.getTime() + 1000 * 60 * 60 * 24 * parseInt(day)
+        startDate = new Date(startDate);
+        var nextStartDate = startDate.getFullYear()+"-"+(startDate.getMonth()+1)+"-"+startDate.getDate();
+      return nextStartDate
     }
   },
   computed:{
@@ -217,19 +111,31 @@ export default {
     this.$store.dispatch('initPage', {tab:false,headmenu:'病区排班'})
     this.getOrder()
   },
+  watch: {
+    types(newValue, oldValue) {
+      this.getOrder()
+    }
+  },
   methods: {
     changeDate () {
       document.getElementById('data').hidden=false
     },
     getOrder () {
-      getOrder({types:this.types, time:this.time}).then((res)=>{
+      getOrder({types:this.types, time: this.time}).then((res)=>{
         if (res.code ==200) {
           this.week = res.data.week
           this.startTime = res.data.startTime
           this.list = res.data.list
+          console.log(this.list)
         }
       })
+    },
+    nurseData(){
+       this.types = 0
+    },
+    doctorData(){
+       this.types = 1
     }
-  },
+  }
 }
 </script>

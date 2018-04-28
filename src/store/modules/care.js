@@ -1,8 +1,12 @@
-// 备忘录管理
+// 责任医护
+// platInfo 病人详情  orders 医嘱执行单
+import {patInfo,orders} from 'api/care'
 const state = {
   title:'',
   data:'',
-  careManageshow: false
+  careManageshow: false,
+  patInfo:'',
+  orders:''
 }
 // mutations
 const mutations = {
@@ -14,15 +18,31 @@ const mutations = {
   },
   setcareshow (state, code) {
     state.careManageshow = code
+  },
+  setpatInfo (state, code) {
+    state.patInfo = code
+  },
+  setorders (state, code) {
+    state.orders = code
   }
 }
 //acions 
 const actions = {
   careManage({state, commit},{icon, title, data}){
     commit('setcareTitle',title)
-    setTimeout (()=>{
-      commit('setcareData',data)
-    },3000)
+  },
+  getcaredata ({commit},{patId}){
+    patInfo(patId).then((res)=>{
+      if(res.code ==200) {
+        commit('setpatInfo',res.data)
+      }
+    })
+    orders(patId).then((res)=>{
+      if(res.code ==200) {
+        commit('setorders',res.data)
+      }
+    })
+
   }
 }
 export default {
